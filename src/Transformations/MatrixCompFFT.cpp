@@ -8,14 +8,14 @@ typedef MatrixCompFFT::MatrixType trans_type;
 
 MatrixCompFFT::MatrixCompFFT(trans_type matrixType, int p) :
 AbstractVectorTransformation(p),
-trans_(matrixType)
+matrixType_(matrixType)
 {
 	generator = findGeneratorOfZZpUnits(p);
 	int generator_inv = fastModPow(generator, p - 2, p);
 	complex_type rootOfUnity = computeRootOfUnity(p);
 
 	complex_vec root_powers = complex_vec(p - 1);
-	switch (trans_)
+	switch (matrixType_)
 	{
 	case trans_type::CRT_P:
 		dim_ = p - 1;
@@ -86,7 +86,7 @@ MatrixCompFFT::~MatrixCompFFT(){}
 // Apply this matrix to @param vec and store the result in x.
 void MatrixCompFFT::applyToVector(entry_type_vec& x, entry_type_vec const& vec) const
 {
-	switch (trans_)
+	switch (matrixType_)
 	{
 	case trans_type::CRT_P:
 		rader_crt_for_primes(x, vec, *precomp_DFT_omega_p_, generator);

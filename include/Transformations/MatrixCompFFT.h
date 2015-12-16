@@ -43,7 +43,7 @@ protected:
 
 private:
 
-	MatrixType trans_;
+	MatrixType matrixType_;
 	int generator; // A generator of the group ZZ_P^*
 	std::unique_ptr<entry_type_vec> precomp_DFT_omega_p_;	// Pre-computed DFT of powers of the p-th root of unity
 
