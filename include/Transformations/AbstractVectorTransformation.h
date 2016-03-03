@@ -9,11 +9,15 @@
 #include <memory>
 #include <iostream>
 #include <complex>
+
+#include "Data_Type_Settings.h"
 #include "Exceptions/RingLweException.h"
 
-typedef int integral_matrix_entry_type;  // entry_type for all integral matrices (int or long)
-typedef double real_type; // type for representation of the reals. Also for usage in std::complex. 
-typedef std::complex<real_type> complex_type;
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		template<typename T> class AbstractVectorTransformation;
+	}
+}
 
 /*
 The abstract base class for all square vector transformations. Typename T is the entry type for all matrix and vector entries.
@@ -22,7 +26,7 @@ Provides pure virtual function "applyToVector".
 @author Christoph Mayer
 @version 1.0
 */
-template<typename T> class AbstractVectorTransformation
+template<typename T> class RLWE_Toolkit::Transformations::AbstractVectorTransformation
 {
 public:
 	typedef T entry_type;

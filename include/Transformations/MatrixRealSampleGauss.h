@@ -8,6 +8,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixRealSampleGauss;
+	}
+}
+
 /*
 Represents the prime-indexed real transformations C*B' used for the sampling of Gaussians in R^dual.
 
@@ -16,7 +22,7 @@ Implements the virtual function "applyToVector" and uses standard matrix-vector 
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixRealSampleGauss : public AbstractVectorTransformation<real_type>
+class RLWE_Toolkit::Transformations::MatrixRealSampleGauss : public AbstractVectorTransformation<real_type>
 {
 public:
 

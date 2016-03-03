@@ -6,6 +6,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixCompFFT;
+	}
+}
+
 /*
 Represents the prime-indexed complex transformations, e.g., DFT_p or CRT_p. 
 (An exception is made by CRT_p^-1 and (CRT_p^*)^-1
@@ -16,7 +22,7 @@ multiplication.
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixCompFFT : public AbstractVectorTransformation<complex_type>
+class RLWE_Toolkit::Transformations::MatrixCompFFT : public AbstractVectorTransformation<complex_type>
 {
 public:
 	typedef std::vector<entry_type> entry_type_vec;

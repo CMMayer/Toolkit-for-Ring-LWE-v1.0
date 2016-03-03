@@ -9,6 +9,12 @@
 #include "Transformations/AbstractVectorTransformation.h"
 #include "Transformations/MatrixCompFFT.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class TransformationCompCRT;
+	}
+}
+
 /*
 This class represents the Chinese remainder transformations (CRT_m, CRT_m^-1, CRT_m^*, (CRT_m^*)^-1) for prime 
 powers m = p^k. We define m' = m/p. The CRT-matrix is represented by three smaller matrices: DFT_m', CRT_p and 
@@ -24,7 +30,7 @@ applyToVector() function of DFT_ and CRT_.
 @author Christoph Mayer
 @version 1.0
 */
-class TransformationCompCRT : public AbstractVectorTransformation<complex_type>
+class RLWE_Toolkit::Transformations::TransformationCompCRT : public AbstractVectorTransformation<complex_type>
 {
 public:
 	typedef AbstractVectorTransformation<complex_type> base_type;

@@ -5,10 +5,12 @@
 
 #include "Math util.h"
 
+using RLWE_Toolkit::Transformations::TransformationCompCRT;
+
 typedef TransformationCompCRT::TransformationType TransformationType;
 
 TransformationCompCRT::TransformationCompCRT(int m, int p, TransformationType transformation) :
-AbstractVectorTransformation((p-1) * (m/p))
+	AbstractVectorTransformation((p-1) * (m/p))
 {
 	typedef MatrixCompFFT::MatrixType trans_type;
 
@@ -57,7 +59,7 @@ AbstractVectorTransformation((p-1) * (m/p))
 		twiddleMatrix_ = std::make_unique<entry_type_vec>(phi_m);
 
 		// m-th rot of unity
-		entry_type tempRootOfUnity = computeRootOfUnity(m);
+		entry_type tempRootOfUnity = RLWE_Toolkit::Math_util::computeRootOfUnity(m);
 
 		if (reversed_){// compute conjugated twiddle matrix
 			for (int i = 1; i < p; i++)

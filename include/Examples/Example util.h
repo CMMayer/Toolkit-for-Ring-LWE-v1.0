@@ -4,7 +4,7 @@
 #define EU_H
 
 #include <bitset>
-#include "RLWE/RingLweCryptographyField.h"
+#include "Main_Classes/RingLweCryptographyField.h"
 
 // Convert char array to bit-vector
 coordinate_vec toBitVec(char* text, int n)

@@ -11,26 +11,20 @@
 #include "Transformations/MatrixCompMult.h"
 #include "Math util.h"
 
-#define REAL_TYPE_ZERO real_type(0)
-#define REAL_TYPE_ONE real_type(1)
-#define COMP_M_I complex_type(REAL_TYPE_ZERO, REAL_TYPE_ONE)
-#define COMP_M_SQRT1_2 complex_type(M_SQRT1_2)
-
 using namespace boost::numeric::ublas;
 
-typedef std::vector<complex_type> complex_vec;
+using RLWE_Toolkit::Transformations::MatrixCompMult;
 
 typedef MatrixCompMult::entry_type entry_type;
 typedef MatrixCompMult::matrix_type matrix_type;
 
-MatrixCompMult::MatrixCompMult(int p, bool adjoint)
-	:
+MatrixCompMult::MatrixCompMult(int p, bool adjoint) :
 	AbstractVectorTransformation(p - 1)
 {
 	matrix_ = std::make_unique<matrix_type>(dim_, dim_);
 
 	// p-th root of unity
-	entry_type tempRootOfUnity = computeRootOfUnity(p);
+	entry_type tempRootOfUnity = RLWE_Toolkit::Math_util::computeRootOfUnity(p);
 
 	// compute CRT for prime p with dim(CRT_p) = phi(p) = p-1.
 	for (pos_int i = 1; i < p; i++)
@@ -46,8 +40,7 @@ MatrixCompMult::MatrixCompMult(int p, bool adjoint)
 	}
 }
 
-MatrixCompMult::MatrixCompMult(MatrixCompMult const& entries)
-	:
+MatrixCompMult::MatrixCompMult(MatrixCompMult const& entries) :
 	AbstractVectorTransformation(entries.getDim()),
 	matrix_(std::make_unique<matrix_type>(*entries.matrix_))
 {}

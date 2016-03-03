@@ -3,11 +3,13 @@
 #include "Transformations/MatrixRealSampleGauss.h"
 #include "Transformations/Transformation algorithms.h"
 
+using RLWE_Toolkit::Transformations::TransformationRealPrimePower;
+
 typedef TransformationRealPrimePower::TransformationType TransformationType;
 typedef TransformationRealPrimePower::entry_type entry_type;
 
 TransformationRealPrimePower::TransformationRealPrimePower(int m, int p, TransformationType transformation) :
-AbstractVectorTransformation((p - 1) * (m / p)) // dimension is phi(m) = (p-1) m' = (p-1) m/p
+	AbstractVectorTransformation((p - 1) * (m / p)) // dimension is phi(m) = (p-1) m' = (p-1) m/p
 {
 	int m_prime = m / p;
 

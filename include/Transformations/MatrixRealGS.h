@@ -8,6 +8,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixRealGS;
+	}
+}
+
 /*
 Represents the prime-indexed real transformations D_p and U_p in the Gram-Schmidt orthogonalization
 of CRT_p.
@@ -18,7 +24,7 @@ multiplication.
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixRealGS : public AbstractVectorTransformation<real_type>
+class RLWE_Toolkit::Transformations::MatrixRealGS : public AbstractVectorTransformation<real_type>
 {
 public:
 

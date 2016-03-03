@@ -1,20 +1,20 @@
-#include "Transformations/MatrixRealSampleGauss.h"
-#include "Math util.h"
 #include <algorithm>
 #include <numeric>
 
-#define REAL_TYPE_ZERO real_type(0)
-#define REAL_TYPE_ONE real_type(1)
+#include "Transformations/MatrixRealSampleGauss.h"
+#include "Math util.h"
 
-MatrixRealSampleGauss::MatrixRealSampleGauss(int dim)
-	:
+using RLWE_Toolkit::Transformations::MatrixRealSampleGauss;
+
+MatrixRealSampleGauss::MatrixRealSampleGauss(int dim) :
 	AbstractVectorTransformation(dim)
 {
 	// matrix represented as vector of size dim^2
 	matrix_ = std::make_unique<entry_type_matrix>(dim*dim);
 	int p = dim + 1;
 	real_type sqrt_2 = sqrt(2.0);
-	complex_type complexRootOfUnity = computeRootOfUnity(p), power1 = complex_type(REAL_TYPE_ONE), power2;
+	complex_type complexRootOfUnity = RLWE_Toolkit::Math_util::computeRootOfUnity(p), power1 = complex_type(REAL_TYPE_ONE), power2;
+
 	// compute C*B' according to the explanations from [May15]
 	for (int i = 0; i < dim; i++)
 	{
@@ -29,8 +29,7 @@ MatrixRealSampleGauss::MatrixRealSampleGauss(int dim)
 	}
 }
 
-MatrixRealSampleGauss::MatrixRealSampleGauss(MatrixRealSampleGauss const& mr)
-	:
+MatrixRealSampleGauss::MatrixRealSampleGauss(MatrixRealSampleGauss const& mr) :
 	AbstractVectorTransformation(mr.dim_),
 	matrix_(std::make_unique<entry_type_matrix>(*mr.matrix_))
 {}
@@ -41,6 +40,7 @@ MatrixRealSampleGauss::~MatrixRealSampleGauss(){}
 void MatrixRealSampleGauss::applyToVector(entry_type_vec& x, entry_type_vec const& vec) const
 {
 	entry_type_vec temp = vec;
+
 	// Usual matrix-vector multiplication via inner products.
 	for (int i = 0; i < dim_; i++)
 	{

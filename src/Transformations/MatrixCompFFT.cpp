@@ -4,12 +4,17 @@
 #include "Math util.h"
 #include "Efficient DFT.h"
 
+using RLWE_Toolkit::Transformations::MatrixCompFFT;
+
 typedef MatrixCompFFT::MatrixType trans_type;
 
 MatrixCompFFT::MatrixCompFFT(trans_type matrixType, int p) :
 AbstractVectorTransformation(p),
 matrixType_(matrixType)
 {
+	using namespace RLWE_Toolkit::Math_util;
+	using namespace RLWE_Toolkit::DFT;
+
 	generator = findGeneratorOfZZpUnits(p);
 	int generator_inv = fastModPow(generator, p - 2, p);
 	complex_type rootOfUnity = computeRootOfUnity(p);
@@ -86,6 +91,8 @@ MatrixCompFFT::~MatrixCompFFT(){}
 // Apply this matrix to @param vec and store the result in x.
 void MatrixCompFFT::applyToVector(entry_type_vec& x, entry_type_vec const& vec) const
 {
+	using namespace RLWE_Toolkit::DFT;
+
 	switch (matrixType_)
 	{
 	case trans_type::CRT_P:

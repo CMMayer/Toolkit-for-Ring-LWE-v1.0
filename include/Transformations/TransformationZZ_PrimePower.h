@@ -9,7 +9,15 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
-class MatrixZZ; // forward declaration
+
+
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixZZ; // forward declaration
+
+		class TransformationZZ_PrimePower;
+	}
+}
 
 /*
 Represents the prime power-indexed integer transformations L_m, G_m^dec, G_m^pow and their inverses 
@@ -23,10 +31,10 @@ and therefore calls the applyToVector() function of matrix_p_.
 @author Christoph Mayer
 @version 1.0
 */
-class TransformationZZ_PrimePower : public AbstractVectorTransformation<integral_matrix_entry_type>
+class RLWE_Toolkit::Transformations::TransformationZZ_PrimePower : public AbstractVectorTransformation<coordinate_type>
 {
 public:
-	typedef AbstractVectorTransformation<integral_matrix_entry_type> base_type;
+	typedef AbstractVectorTransformation<coordinate_type> base_type;
 
 	// indicator for the integer vector transformations
 	enum class TransformationType

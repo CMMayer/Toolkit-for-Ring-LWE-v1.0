@@ -1,17 +1,17 @@
 #include "Transformations/MatrixZZq.h"
 
+using RLWE_Toolkit::Transformations::MatrixZZq;
+
 typedef MatrixZZq::entry_type entry_type;
 typedef MatrixZZq::matrix_type matrix_type;
 
-MatrixZZq::MatrixZZq(matrix_type const& entries)
-	:
+MatrixZZq::MatrixZZq(matrix_type const& entries) :
 	AbstractVectorTransformation(entries.NumCols()),
 	matrix_(std::make_unique<matrix_type>(entries))
 {}
 
 // Copy constructor
-MatrixZZq::MatrixZZq(MatrixZZq const& entries) 
-	:
+MatrixZZq::MatrixZZq(MatrixZZq const& entries) :
 	AbstractVectorTransformation(entries.getDim()),
 	matrix_(std::make_unique<matrix_type>(*entries.matrix_))
 {}

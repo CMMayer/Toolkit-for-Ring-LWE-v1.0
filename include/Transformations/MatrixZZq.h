@@ -10,6 +10,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixZZq;
+	}
+}
+
 /*
 For a prime power m = p^k and m' = m/p, the matrices DFT_m',q and CRT_p,q over ZZ_q are realized by this class.
 
@@ -20,7 +26,7 @@ The matrix is realized by the NTL.
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixZZq : public AbstractVectorTransformation<integral_matrix_entry_type>
+class RLWE_Toolkit::Transformations::MatrixZZq : public AbstractVectorTransformation<coordinate_type>
 {
 public:
 	typedef NTL::mat_ZZ_p matrix_type;

@@ -2,16 +2,18 @@
 #include "Transformations/Transformation algorithms.h"
 #include "Transformations/MatrixZZq.h"
 
+using RLWE_Toolkit::Transformations::TransformationZZqCRT;
+using RLWE_Toolkit::Transformations::MatrixZZq;
+
 typedef TransformationZZqCRT::entry_type entry_type;
 
-TransformationZZqCRT::TransformationZZqCRT(MatrixZZq const& DFT, MatrixZZq const& CRT, std::vector<NTL::ZZ_p> const& twiddleMatrix,
-	bool const reversed)
-	:
-	AbstractVectorTransformation(twiddleMatrix.size()),
-	DFT_(std::make_unique<MatrixZZq>(DFT)),
-	CRT_(std::make_unique<MatrixZZq>(CRT)),
-	twiddleMatrix_(std::make_unique<std::vector<NTL::ZZ_p>>(twiddleMatrix)),
-	reversed_(reversed)
+TransformationZZqCRT::TransformationZZqCRT(MatrixZZq const& DFT, MatrixZZq const& CRT, 
+	std::vector<NTL::ZZ_p> const& twiddleMatrix, bool const reversed) :
+		AbstractVectorTransformation(twiddleMatrix.size()),
+		DFT_(std::make_unique<MatrixZZq>(DFT)),
+		CRT_(std::make_unique<MatrixZZq>(CRT)),
+		twiddleMatrix_(std::make_unique<std::vector<NTL::ZZ_p>>(twiddleMatrix)),
+		reversed_(reversed)
 {}
 
 TransformationZZqCRT::~TransformationZZqCRT(){}

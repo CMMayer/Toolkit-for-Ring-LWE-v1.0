@@ -8,6 +8,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixCompMult;
+	}
+}
+
 /*
 Represents the prime-indexed complex transformations CRT_p^-1 and (CRT_p^*)^-1.
 
@@ -19,7 +25,7 @@ The matrix is realized by the boost library.
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixCompMult : public AbstractVectorTransformation<complex_type>
+class RLWE_Toolkit::Transformations::MatrixCompMult : public AbstractVectorTransformation<complex_type>
 {
 public:
 	typedef boost::numeric::ublas::matrix<entry_type> matrix_type;

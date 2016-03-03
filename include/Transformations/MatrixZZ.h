@@ -8,6 +8,12 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixZZ;
+	}
+}
+
 /*
 Represents the prime-indexed integral vector transformations G_p^dec, G_p^pow and their inverses
 for multiplication with the special elements g and g^-1 in the powerful and decoding bases as well 
@@ -19,7 +25,7 @@ multiplication.
 @author Christoph Mayer
 @version 1.0
 */
-class MatrixZZ : public AbstractVectorTransformation<integral_matrix_entry_type>
+class RLWE_Toolkit::Transformations::MatrixZZ : public AbstractVectorTransformation<coordinate_type>
 {
 public:
 

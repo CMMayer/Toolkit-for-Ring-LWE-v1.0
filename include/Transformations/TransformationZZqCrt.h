@@ -11,7 +11,13 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
-class MatrixZZq; // forward declaration
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class MatrixZZq; // forward declaration
+
+		class TransformationZZqCRT;
+	}
+}
 
 /*
 This class represents the Chinese remainder transformation (CRT) for prime powers m = p^k. We define m' = m/p. 
@@ -28,10 +34,10 @@ applyToVector() function of DFT_ and CRT_.
 @author Christoph Mayer
 @version 1.0
 */
-class TransformationZZqCRT : public AbstractVectorTransformation<integral_matrix_entry_type>
+class RLWE_Toolkit::Transformations::TransformationZZqCRT : public AbstractVectorTransformation<coordinate_type>
 {
 public:
-	typedef AbstractVectorTransformation<integral_matrix_entry_type> base_type;
+	typedef AbstractVectorTransformation<coordinate_type> base_type;
 
 	// Constructs the CRT_m,q matrix for prime powers m = p^k. Let m' = m/p. 
 	// CRT_m is represented by three smaller matrices: DFT_m', CRT_p and the twiddle matrix.

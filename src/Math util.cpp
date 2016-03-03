@@ -10,13 +10,8 @@
 
 #include "Math util.h"
 
-#define REAL_TYPE_ZERO real_type(0)
-#define REAL_TYPE_ONE real_type(1)
-#define COMP_M_I complex_type(REAL_TYPE_ZERO, REAL_TYPE_ONE)
-#define COMP_M_SQRT1_2 complex_type(M_SQRT1_2)
-
 // Finds a generator of the units of ZZ_p.
-int findGeneratorOfZZpUnits(int p)
+int RLWE_Toolkit::Math_util::findGeneratorOfZZpUnits(int p)
 {
 	using namespace std;
 
@@ -51,7 +46,7 @@ int findGeneratorOfZZpUnits(int p)
 }
 
 // Fast exponentiation modulo @param modulus.
-int fastModPow(int base, int exponent, int modulus)
+int RLWE_Toolkit::Math_util::fastModPow(int base, int exponent, int modulus)
 {
 	int result = 1;
 	// use the binary representation of the exponent
@@ -68,7 +63,7 @@ int fastModPow(int base, int exponent, int modulus)
 // Computes the prime factorization of m. Output is given by a list of pairs. For each prime p dividing m a pair
 // (p, k) contains the prime factor and the prime exponent, i.e., p^k|m but not p^k+1|m.
 // This algorithm works only for numbers m whose prime factors are within the first 10000 primes.
-std::list<std::pair<pos_int, pos_int>> primeFactorization(pos_int const m)
+std::list<std::pair<pos_int, pos_int>> RLWE_Toolkit::Math_util::primeFactorization(pos_int const m)
 {
 	using namespace boost::math;
 	pos_int n = m;
@@ -124,7 +119,7 @@ std::list<std::pair<pos_int, pos_int>> primeFactorization(pos_int const m)
 * The dependencies are implemented via the Boost-library.
 *
 */
-pos_int const eulerTotient(pos_int const n)
+pos_int const RLWE_Toolkit::Math_util::eulerTotient(pos_int const n)
 {
 	using namespace boost::math;
 
@@ -156,7 +151,7 @@ pos_int const eulerTotient(pos_int const n)
 }
 
 // Searches the first prime p > min, s.t. p = 1 mod m.
-pos_int getPrimeMod1(pos_int const m, pos_int const min)
+pos_int RLWE_Toolkit::Math_util::getPrimeMod1(pos_int const m, pos_int const min)
 {
 	using namespace boost::math;
 	int i = 1;
@@ -171,7 +166,7 @@ pos_int getPrimeMod1(pos_int const m, pos_int const min)
 	return n;
 }
 
-int getNextPowerOfTwo(int n)
+int RLWE_Toolkit::Math_util::getNextPowerOfTwo(int n)
 {
 	if (n <= 0){
 		return 0;
@@ -191,14 +186,14 @@ int getNextPowerOfTwo(int n)
 }
 
 // Returns true iff n is a power of two
-bool isPowerOfTwo(int n)
+bool RLWE_Toolkit::Math_util::isPowerOfTwo(int n)
 {
 	// (n-1) & n is zero iff n is power of two
 	return !((n - 1) & n);
 }
 
 // Computes the value of the "first" m-th root of unity in CC.
-complex_type const computeRootOfUnity(pos_int m)
+complex_type const RLWE_Toolkit::Math_util::computeRootOfUnity(pos_int m)
 {
 	real_type m_temp = m;
 	// COMP_M_I = sqrt(-1)
@@ -206,7 +201,7 @@ complex_type const computeRootOfUnity(pos_int m)
 }
 
 // Searches for an element of order @param order. Succeeds if @param order divides p-1
-NTL::ZZ_p const findElementOfOrder(pos_int order, pos_int p)
+NTL::ZZ_p const RLWE_Toolkit::Math_util::findElementOfOrder(pos_int order, pos_int p)
 {
 	using namespace NTL;
 	ZZ q = ZZ(p);

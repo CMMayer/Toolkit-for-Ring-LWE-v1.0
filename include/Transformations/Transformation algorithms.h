@@ -12,7 +12,7 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
-template<typename T> using Trans = AbstractVectorTransformation<T>;
+template<typename T> using Trans = RLWE_Toolkit::Transformations::AbstractVectorTransformation<T>;
 template<typename T> using avt_uptr = std::unique_ptr < Trans<T> >;
 
 /*

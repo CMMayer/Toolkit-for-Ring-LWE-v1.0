@@ -8,16 +8,13 @@
 
 #include "Efficient DFT.h"
 
-#define REAL_TYPE_ZERO real_type(0)
-#define REAL_TYPE_ONE real_type(1)
-#define COMP_M_I complex_type(REAL_TYPE_ZERO, REAL_TYPE_ONE)
-#define COMP_M_SQRT1_2 complex_type(M_SQRT1_2)
+using namespace RLWE_Toolkit::Math_util;
 
 /*
 Implementation of Rader's DFT for prime length input. For a detailed explanation see:
 http://www.skybluetrades.net/blog/posts/2013/12/31/data-analysis-fft-9.html
 */
-void rader_dft_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
+void RLWE_Toolkit::DFT::rader_dft_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
 {
 	int p = input.size();
 
@@ -61,7 +58,7 @@ void rader_dft_for_primes(complex_vec& output, complex_vec const& input, complex
 /*
 Slightly changed implementation of Rader's DFT for prime length input. This algorithm computes the CRT instead of the DFT.
 */
-void rader_crt_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
+void RLWE_Toolkit::DFT::rader_crt_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
 {
 	int p = input.size() + 1;
 
@@ -105,7 +102,7 @@ void rader_crt_for_primes(complex_vec& output, complex_vec const& input, complex
 /*
 Slightly changed implementation of Rader's DFT for prime length input. This algorithm computes the adjoint CRT instead of the DFT.
 */
-void rader_crt_star_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
+void RLWE_Toolkit::DFT::rader_crt_star_for_primes(complex_vec& output, complex_vec const& input, complex_vec const& precomp_DFT_omega_p, int generator)
 {
 	int p = input.size() + 1;
 
@@ -146,7 +143,7 @@ void rader_crt_star_for_primes(complex_vec& output, complex_vec const& input, co
 }
 
 // Cooley-Tukey FFT for input of length equal to a power of two.
-void cooley_tukey_fft(complex_vec& output, complex_vec const& input)
+void RLWE_Toolkit::DFT::cooley_tukey_fft(complex_vec& output, complex_vec const& input)
 {
 	int N = input.size();
 	if (!isPowerOfTwo(N)){
@@ -158,7 +155,7 @@ void cooley_tukey_fft(complex_vec& output, complex_vec const& input)
 }
 
 // Cooley-Tukey IFFT for input of length equal to a power of two.
-void cooley_tukey_ifft(complex_vec& output, complex_vec const& input)
+void RLWE_Toolkit::DFT::cooley_tukey_ifft(complex_vec& output, complex_vec const& input)
 {
 	int N = input.size();
 	if (!isPowerOfTwo(N)){
@@ -173,7 +170,7 @@ void cooley_tukey_ifft(complex_vec& output, complex_vec const& input)
 }
 
 // Recursive Cooley-Tukey FFT for input of length equal to a power of two.
-void cooley_tukey_fft(complex_vec& output, complex_vec const& input, int N, int start /* = 0*/, int step /* = 1*/)
+void RLWE_Toolkit::DFT::cooley_tukey_fft(complex_vec& output, complex_vec const& input, int N, int start /* = 0*/, int step /* = 1*/)
 {
 	if (N == 1){ // recursion anchor
 		output[start] = input[start];
@@ -208,7 +205,7 @@ void cooley_tukey_fft(complex_vec& output, complex_vec const& input, int N, int 
 }
 
 // Recursive Cooley-Tukey IFFT for input of length equal to a power of two.
-void cooley_tukey_ifft(complex_vec& output, complex_vec const& input, int N, int start /* = 0*/, int step /* = 1*/)
+void RLWE_Toolkit::DFT::cooley_tukey_ifft(complex_vec& output, complex_vec const& input, int N, int start /* = 0*/, int step /* = 1*/)
 {
 	if (N == 1){ // recursion anchor
 		output[start] = input[start];
@@ -243,7 +240,7 @@ void cooley_tukey_ifft(complex_vec& output, complex_vec const& input, int N, int
 }
 
 // Applies the permutation induced by the generator @param generator of the units of ZZ_p
-void unitsGeneratorPermutation(complex_vec& output, complex_vec const& input, int generator, int p)
+void RLWE_Toolkit::DFT::unitsGeneratorPermutation(complex_vec& output, complex_vec const& input, int generator, int p)
 {
 	if (input.size() == p){ // permutes the entries 1,...,p-1 of the input
 		int g = 1;
@@ -270,7 +267,7 @@ void unitsGeneratorPermutation(complex_vec& output, complex_vec const& input, in
 }
 
 // Applies the permutation induced by the inverse of the generator @param generator of the units of ZZ_p
-void unitsGeneratorPermutationInverse(complex_vec& output, complex_vec const& input, int generator, int p)
+void RLWE_Toolkit::DFT::unitsGeneratorPermutationInverse(complex_vec& output, complex_vec const& input, int generator, int p)
 {
 	if (output.size() == p - 1){ // writes the permuted entries to 0,...,p-2 of the output
 		int g_inv = fastModPow(generator, p - 2, p);
@@ -298,7 +295,7 @@ void unitsGeneratorPermutationInverse(complex_vec& output, complex_vec const& in
 	
 }
 
-void zeroPadding(complex_vec& output, complex_vec const& input, int newSize)
+void RLWE_Toolkit::DFT::zeroPadding(complex_vec& output, complex_vec const& input, int newSize)
 {
 	if (newSize < 2 * input.size() - 3){
 		throw "The new size is to small.";
@@ -314,7 +311,7 @@ void zeroPadding(complex_vec& output, complex_vec const& input, int newSize)
 	std::copy(input.begin() + 1, input.end(), output.begin() + (M + 1));
 }
 
-void cyclicPadding(complex_vec& output, complex_vec const& input, int newSize)
+void RLWE_Toolkit::DFT::cyclicPadding(complex_vec& output, complex_vec const& input, int newSize)
 {
 	if (newSize < 2 * input.size() - 3){
 		throw "The new size is to small.";

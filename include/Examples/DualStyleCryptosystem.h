@@ -5,13 +5,12 @@
 
 #include <stdio.h>
 #include "Example util.h"
-#include "RLWE/RingLweCryptographyField.h"
-
-#define REAL_TYPE_ZERO 0.0
-#define REAL_TYPE_ONE 1.0
+#include "Main_Classes/RingLweCryptographyField.h"
 
 typedef RingElement::Basis Basis;
 typedef std::vector<RingElement> elmt_vec;
+
+using namespace RLWE_Toolkit;
 
 /*
 Example implementation of the "Dual-Style Cryptosystem" from the companion work [May15].

@@ -1,20 +1,16 @@
 #include "Transformations/MatrixRealGS.h"
 #include <algorithm>
 
-#define REAL_TYPE_ZERO real_type(0)
-#define REAL_TYPE_ONE real_type(1)
+using RLWE_Toolkit::Transformations::MatrixRealGS;
 
-
-MatrixRealGS::MatrixRealGS(int dim, int m_prime, bool D_or_U)
-	:
+MatrixRealGS::MatrixRealGS(int dim, int m_prime, bool D_or_U) :
 	AbstractVectorTransformation(dim),
 	m_prime_(m_prime),
 	GS_D_or_U_(D_or_U)
 {}
 
 // Copy constructor
-MatrixRealGS::MatrixRealGS(MatrixRealGS const& mr)
-	:
+MatrixRealGS::MatrixRealGS(MatrixRealGS const& mr) :
 	AbstractVectorTransformation(mr.dim_),
 	m_prime_(mr.m_prime_),
 	GS_D_or_U_(mr.GS_D_or_U_)

@@ -2,10 +2,13 @@
 #include "Transformations/Transformation algorithms.h"
 #include "Math util.h"
 
+using RLWE_Toolkit::Transformations::TransformationCompDFT;
+using RLWE_Toolkit::Transformations::MatrixCompFFT;
+
 TransformationCompDFT::TransformationCompDFT(int m, int p, bool reversed, std::shared_ptr<MatrixCompFFT const> DFT_p) :
-AbstractVectorTransformation(m),
-reversed_(reversed),
-DFT_p_(DFT_p)
+	AbstractVectorTransformation(m),
+	reversed_(reversed),
+	DFT_p_(DFT_p)
 {
 	int m_prime = m / p;
 	if (m_prime > 1){ // Transformation can be further decomposed
@@ -15,7 +18,7 @@ DFT_p_(DFT_p)
 		twiddleMatrix_ = std::make_unique<entry_type_vec>(m);
 
 		// m-th rot of unity
-		entry_type tempRootOfUnity = computeRootOfUnity(m);
+		entry_type tempRootOfUnity = RLWE_Toolkit::Math_util::computeRootOfUnity(m);
 
 		if (reversed_){ //compute adjoint twiddle matrix
 			for (int i = 0; i < p; i++)

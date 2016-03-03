@@ -2,11 +2,13 @@
 #include "Transformations/Transformation algorithms.h"
 #include "Transformations/MatrixZZ.h"
 
+using RLWE_Toolkit::Transformations::TransformationZZ_PrimePower;
+
 typedef TransformationZZ_PrimePower::TransformationType TransformationType;
 typedef TransformationZZ_PrimePower::entry_type entry_type;
 
 TransformationZZ_PrimePower::TransformationZZ_PrimePower(int m, int p, TransformationType transformation) :
-AbstractVectorTransformation((p - 1) * (m / p)) // dimension is phi(m) = (p-1) m' = (p-1) m/p
+	AbstractVectorTransformation((p - 1) * (m / p)) // dimension is phi(m) = (p-1) m' = (p-1) m/p
 {
 	typedef MatrixZZ::MatrixType mat_type;
 	int m_prime = m / p;

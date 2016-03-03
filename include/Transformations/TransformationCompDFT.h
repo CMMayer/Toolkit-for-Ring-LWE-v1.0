@@ -9,6 +9,12 @@
 #include "Transformations/AbstractVectorTransformation.h"
 #include "Transformations/MatrixCompFFT.h"
 
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		class TransformationCompDFT;
+	}
+}
+
 /*
 This class represents the discrete Fourier transformations (DFT_m, DFT_m^-1, DFT_m^*, (DFT_m^*)^-1) for prime
 powers m = p^k. We define m' = m/p. The DFT-matrix is represented by three smaller matrices: DFT_m', DFT_p and 
@@ -24,7 +30,7 @@ applyToVector() function of DFT_m_prime and DFT_p.
 @author Christoph Mayer
 @version 1.0
 */
-class TransformationCompDFT : public AbstractVectorTransformation<complex_type>
+class RLWE_Toolkit::Transformations::TransformationCompDFT : public AbstractVectorTransformation<complex_type>
 {
 public:
 	typedef AbstractVectorTransformation<complex_type> base_type;

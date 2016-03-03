@@ -9,11 +9,15 @@
 
 #include "Transformations/AbstractVectorTransformation.h"
 
-// forward declaration
-class MatrixRealGS;
-class MatrixRealSampleGauss;
+namespace RLWE_Toolkit {
+	namespace Transformations {
+		// forward declaration
+		class MatrixRealGS;
+		class MatrixRealSampleGauss;
 
-typedef double real_type;
+		class TransformationRealPrimePower;
+	}
+}
 
 /*
 Represents the prime power-indexed real transformations D_m, U_m and C*B' for a prime power m = p^k.
@@ -27,7 +31,7 @@ and therefore calls the applyToVector() function of matrix_p_.
 @author Christoph Mayer
 @version 1.0
 */
-class TransformationRealPrimePower : public AbstractVectorTransformation<real_type>
+class RLWE_Toolkit::Transformations::TransformationRealPrimePower : public AbstractVectorTransformation<real_type>
 {
 public:
 	typedef AbstractVectorTransformation<real_type> base_type;

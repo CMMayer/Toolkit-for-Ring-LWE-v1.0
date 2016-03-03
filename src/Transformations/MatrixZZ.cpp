@@ -1,17 +1,18 @@
-#include "Transformations/MatrixZZ.h"
 #include <algorithm>
+
+#include "Transformations/MatrixZZ.h"
+
+using RLWE_Toolkit::Transformations::MatrixZZ;
 
 typedef MatrixZZ::MatrixType MatrixType;
 
-MatrixZZ::MatrixZZ(int dim, MatrixType matrixType)
-	:
+MatrixZZ::MatrixZZ(int dim, MatrixType matrixType) :
 	AbstractVectorTransformation(dim),
 	matrixType_(matrixType)
 {}
 
 // Copy constructor
-MatrixZZ::MatrixZZ(MatrixZZ const& mzz)
-	:
+MatrixZZ::MatrixZZ(MatrixZZ const& mzz) :
 	AbstractVectorTransformation(mzz.dim_),
 	matrixType_(mzz.getMultType())
 {}

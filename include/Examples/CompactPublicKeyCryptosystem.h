@@ -5,14 +5,12 @@
 
 #include <stdio.h>
 #include "Example util.h"
-#include "RLWE/RingLweCryptographyField.h"
-
-#define REAL_TYPE_ZERO 0.0
-#define REAL_TYPE_ONE 1.0
+#include "Main_Classes/RingLweCryptographyField.h"
 
 typedef std::pair<RingElement*, RingElement*> elmt_pair;
 typedef RingElement::Basis Basis;
-typedef unsigned int pos_int;
+
+using namespace RLWE_Toolkit;
 
 /*
 Example implementation of the "Compact Public-Key Cryptosystem" from the companion work [May15].
